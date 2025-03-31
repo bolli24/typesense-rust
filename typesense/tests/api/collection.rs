@@ -26,6 +26,7 @@ fn schema_to_resp(schema: CollectionSchema, resp: &CollectionResponse) -> Collec
         symbols_to_index: schema.symbols_to_index,
         num_documents: resp.num_documents,
         created_at: resp.created_at,
+		voice_query_model: schema.voice_query_model
     }
 }
 

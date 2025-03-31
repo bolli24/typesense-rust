@@ -20,6 +20,14 @@ pub struct FieldBuilder {
     num_dim: Option<i32>,
     drop: Option<bool>,
     embed: Option<Box<FieldEmbed>>,
+	reference: Option<String>,
+    store: Option<bool>,
+    vec_dist: Option<String>,
+    range_index: Option<bool>,
+    stem: Option<bool>,
+    stem_dictionary: Option<String>,
+    token_separators: Option<Vec<String>>,
+    symbols_to_index: Option<Vec<String>>,
 }
 
 impl FieldBuilder {
@@ -89,8 +97,70 @@ impl FieldBuilder {
         self
     }
 
+    /// Set embed attribute for field
+    #[inline]
+    pub fn embed(mut self, embed: Option<Box<FieldEmbed>>) -> Self {
+        self.embed = embed;
+        self
+    }
+
+    /// Set reference attribute for field
+    #[inline]
+    pub fn reference(mut self, reference: Option<String>) -> Self {
+        self.reference = reference;
+        self
+    }
+
+    /// Set store attribute for field
+    #[inline]
+    pub fn store(mut self, store: Option<bool>) -> Self {
+        self.store = store;
+        self
+    }
+
+    /// Set vec_dist attribute for field
+    #[inline]
+    pub fn vec_dist(mut self, vec_dist: Option<String>) -> Self {
+        self.vec_dist = vec_dist;
+        self
+    }
+
+    /// Set range_index attribute for field
+    #[inline]
+    pub fn range_index(mut self, range_index: Option<bool>) -> Self {
+        self.range_index = range_index;
+        self
+    }
+
+    /// Set stem attribute for field
+    #[inline]
+    pub fn stem(mut self, stem: Option<bool>) -> Self {
+        self.stem = stem;
+        self
+    }
+
+    /// Set stem_dictionary attribute for field
+    #[inline]
+    pub fn stem_dictionary(mut self, stem_dictionary: Option<String>) -> Self {
+        self.stem_dictionary = stem_dictionary;
+        self
+    }
+
+    /// Set token_separators attribute for field
+    #[inline]
+    pub fn token_separators(mut self, token_separators: Option<Vec<String>>) -> Self {
+        self.token_separators = token_separators;
+        self
+    }
+
+    /// Set symbols_to_index attribute for field
+    #[inline]
+    pub fn symbols_to_index(mut self, symbols_to_index: Option<Vec<String>>) -> Self {
+        self.symbols_to_index = symbols_to_index;
+        self
+    }
+
     /// Create a `Field` with the current values of the builder,
-    /// It can fail if the name or the typesense_type are not defined.
     #[inline]
     pub fn build(self) -> Field {
         Field {
@@ -105,6 +175,14 @@ impl FieldBuilder {
             num_dim: self.num_dim,
             drop: self.drop,
             embed: self.embed,
+            reference: self.reference,
+            store: self.store,
+            vec_dist: self.vec_dist,
+            range_index: self.range_index,
+            stem: self.stem,
+            stem_dictionary: self.stem_dictionary,
+            token_separators: self.token_separators,
+            symbols_to_index: self.symbols_to_index,
         }
     }
 }

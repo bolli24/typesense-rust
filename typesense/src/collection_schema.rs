@@ -6,6 +6,7 @@
 use crate::field::Field;
 
 pub use typesense_codegen::models::CollectionSchema;
+use typesense_codegen::models::VoiceQueryModelCollectionConfig;
 
 /// Builder for the [CollectionSchema] struct.
 #[derive(Debug, Default)]
@@ -16,6 +17,7 @@ pub struct CollectionSchemaBuilder {
     token_separators: Option<Vec<String>>,
     enable_nested_fields: Option<bool>,
     symbols_to_index: Option<Vec<String>>,
+	voice_query_model: Option<Box<VoiceQueryModelCollectionConfig>>
 }
 
 impl CollectionSchemaBuilder {
@@ -64,6 +66,12 @@ impl CollectionSchemaBuilder {
         self
     }
 
+	/// Set voice query model
+	#[inline]
+	pub fn voice_query_model(mut self, voice_query_model: Option<VoiceQueryModelCollectionConfig>) -> Self {
+		self.voice_query_model = voice_query_model.map(Box::new);
+		self
+	}
     /// Set symbols to index
     #[inline]
     pub fn symbols_to_index(mut self, symbols_to_index: Vec<String>) -> Self {
@@ -82,6 +90,7 @@ impl CollectionSchemaBuilder {
             token_separators: self.token_separators,
             enable_nested_fields: self.enable_nested_fields,
             symbols_to_index: self.symbols_to_index,
+			voice_query_model: self.voice_query_model
         }
     }
 }

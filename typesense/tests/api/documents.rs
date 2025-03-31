@@ -35,7 +35,7 @@ async fn import_documents() {
     let resp = documents_api::import_documents(
         Config::get(),
         &Company::collection_schema().name,
-        documents,
+        &documents,
         None,
     )
     .await
